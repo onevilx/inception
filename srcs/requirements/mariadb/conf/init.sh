@@ -1,0 +1,1 @@
+#!bin/bash ajmi w scriptat lmla7 hh
