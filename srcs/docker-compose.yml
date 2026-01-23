@@ -1,10 +1,8 @@
-version: '3.8'
-
 services:
   mariadb:
     build: ./requirements/mariadb
-    restart: unless-stopped
-    env_file: ../srcs/.env
+    restart: on-failure
+    env_file: .env
     volumes:
       - mariadb_data:/var/lib/mysql
     networks:
@@ -12,8 +10,8 @@ services:
 
   wordpress:
     build: ./requirements/wordpress
-    restart: unless-stopped
-    env_file: ../srcs/.env
+    restart: on-failure
+    env_file: .env
     volumes:
       - wordpress_files:/var/www/html
     depends_on:
@@ -23,9 +21,9 @@ services:
 
   nginx:
     build: ./requirements/nginx
-    restart: unless-stopped
+    restart: on-failure
     ports:
-      - "443:443"
+      - "6969:443"
     volumes:
       - wordpress_files:/var/www/html:ro
     depends_on:
@@ -35,7 +33,16 @@ services:
 
 volumes:
   mariadb_data:
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/${USER}/data/mariadb
+
   wordpress_files:
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/${USER}/data/wordpress
 
 networks:
   inception_network:

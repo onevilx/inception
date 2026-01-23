@@ -1,11 +1,13 @@
 FROM debian:bookworm-slim
 
-RUN apt-get update && apt-get -y install mariadb-server
+RUN apt-get update && apt-get install -y mariadb-server \
+    && rm -rf /var/lib/apt/lists/*
 
-COPY tools/ /docker-entrypoint-initdb.d/
+COPY tools/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
+COPY tools/init.sh /usr/local/bin/init.sh
+
+RUN chmod +x /usr/local/bin/init.sh
 
 EXPOSE 3306
 
-RUN chmod +x /docker-entrypoint-initdb.d/*.sh
-
-CMD ["mysqld"]
+CMD ["/usr/local/bin/init.sh"]
