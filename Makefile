@@ -1,8 +1,10 @@
-DATA_DIR = ~/home/$(USER)/data
-WP_DIR   = $(DATA_DIR)/wordpress
-DB_DIR   = $(DATA_DIR)/mariadb
+USER := $(shell whoami)
 
-COMPOSE = docker compose -f srcs/docker-compose.yml
+DATA_DIR := /home/$(USER)/data
+WP_DIR   := $(DATA_DIR)/wordpress
+DB_DIR   := $(DATA_DIR)/mariadb
+
+COMPOSE := docker compose -f srcs/docker-compose.yml
 
 all: up
 
@@ -14,12 +16,11 @@ up:
 down:
 	$(COMPOSE) down
 
-clean: down
+clean:
 	$(COMPOSE) down -v
 	rm -rf $(DATA_DIR)
 
 re: clean
-	rm -rf $(DATA_DIR)
-	 make up
+	make up
 
 .PHONY: all up down clean re
