@@ -2,6 +2,7 @@ services:
   mariadb:
     build: ./requirements/mariadb
     image: mariadb:inception
+    container_name: mariadb
     restart: on-failure
     env_file: .env
     volumes:
@@ -12,6 +13,7 @@ services:
   wordpress:
     build: ./requirements/wordpress
     image: wordpress:inception
+    container_name: wordpress
     restart: on-failure
     env_file: .env
     volumes:
@@ -24,6 +26,7 @@ services:
   nginx:
     build: ./requirements/nginx
     image: nginx:inception
+    container_name: nginx
     restart: on-failure
     ports:
       - "6969:443"
@@ -31,6 +34,28 @@ services:
       - wordpress_files:/var/www/html:ro
     depends_on:
       - wordpress
+    networks:
+      - inception_network
+
+  website:
+    build: ./requirements/bonus/website/
+    image: static-website:inception
+    container_name: static-website
+    restart: on-failure
+    ports:
+      - "6666:8090"
+    networks:
+      - inception_network
+  
+  adminer:
+    build: ./requirements/bonus/adminer/
+    image: adminer:inception
+    container_name: adminer
+    restart: on-failure
+    ports:
+      - "6699:5050"
+    depends_on:
+      - mariadb
     networks:
       - inception_network
 
