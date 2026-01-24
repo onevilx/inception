@@ -17,7 +17,7 @@ down:
 	$(COMPOSE) down
 
 clean:
-	$(COMPOSE) down -v
+	$(COMPOSE) down
 	rm -rf $(DATA_DIR)
 
 re: clean

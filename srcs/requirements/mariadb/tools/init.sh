@@ -1,26 +1,26 @@
-#!/bin/bash
+#!/bin/sh
+
 set -e
 
-# Initialize DB only if empty
-if [ ! -d "/var/lib/mysql/mysql" ]; then
-    mysql_install_db --user=mysql --datadir=/var/lib/mysql
+if [ ! -d "/run/mysqld" ]; then
+	mkdir -p /run/mysqld
+	chown -R mysql:mysql /run/mysqld
 fi
 
-# Start MariaDB in background
-mysqld_safe --user=mysql &
+if [ ! -f '/etc/.firstrun' ]; then
+	echo 'first time setup...'
+	chown -R mysql:mysql /var/lib/mysql
+	mysql_install_db --basedir=/usr --datadir=/var/lib/mysql --user=mysql > /dev/null
+	TMP=/tmp/.tmpfile
+	echo "FLUSH PRIVILEGES;" >> ${TMP}
+	echo "ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';" >> ${TMP}
+	echo "CREATE DATABASE IF NOT EXISTS ${MYSQL_DATABASE};" >> ${TMP}
+	echo "CREATE USER IF NOT EXISTS '${WP_DB_USER}'@'%' IDENTIFIED BY '${WP_DB_PASSWORD}';" >> ${TMP}
+	echo "GRANT ALL PRIVILEGES ON ${MYSQL_DATABASE}.* TO '${WP_DB_USER}'@'%' IDENTIFIED BY '${WP_DB_PASSWORD}';" >> ${TMP}
+	echo "FLUSH PRIVILEGES;" >> ${TMP}
+	/usr/sbin/mysqld --user=mysql --bootstrap < ${TMP}
+	rm -f ${TMP}
+	touch '/etc/.firstrun'
+fi
 
-# Wait until MariaDB is ready
-until mysqladmin ping --silent; do
-    sleep 2
-done
-
-mysql -u root <<EOF
-CREATE DATABASE IF NOT EXISTS \`${MYSQL_DATABASE}\`;
-CREATE USER IF NOT EXISTS '${MYSQL_USER}'@'%' IDENTIFIED BY '${MYSQL_PASSWORD}';
-GRANT ALL PRIVILEGES ON \`${MYSQL_DATABASE}\`.* TO '${MYSQL_USER}'@'%';
-ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
-FLUSH PRIVILEGES;
-EOF
-
-# Bring mysqld to foreground (PID 1)
-wait
+exec /usr/sbin/mysqld --user=mysql --console

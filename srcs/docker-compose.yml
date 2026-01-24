@@ -1,6 +1,7 @@
 services:
   mariadb:
     build: ./requirements/mariadb
+    image: mariadb:inception
     restart: on-failure
     env_file: .env
     volumes:
@@ -10,6 +11,7 @@ services:
 
   wordpress:
     build: ./requirements/wordpress
+    image: wordpress:inception
     restart: on-failure
     env_file: .env
     volumes:
@@ -21,6 +23,7 @@ services:
 
   nginx:
     build: ./requirements/nginx
+    image: nginx:inception
     restart: on-failure
     ports:
       - "6969:443"

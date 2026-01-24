@@ -1,7 +1,6 @@
-FROM nginx:alpine
+FROM debian:12
 
-RUN apk add --no-cache openssl
-
+RUN apt update && apt install bash nginx openssl -y
 RUN mkdir -p /etc/nginx/ssl
 
 # Create self-signed certificate
