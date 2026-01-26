@@ -20,6 +20,7 @@ services:
       - wordpress_files:/var/www/html
     depends_on:
       - mariadb
+      - redis
     networks:
       - inception_network
 
@@ -70,6 +71,28 @@ services:
     volumes:
       - portainer_data:/data
       - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - inception_network
+
+  redis:
+    build: ./requirements/bonus/redis
+    image: redis:inception
+    container_name: redis
+    restart: on-failure
+    networks:
+      - inception_network
+
+  ftp:
+    build: ./requirements/bonus/ftp
+    image: ftp:inception
+    container_name: ftp
+    restart: on-failure
+    env_file: .env
+    volumes:
+      - wordpress_files:/var/www/html
+    ports:
+      - "2121:21"
+      - "21000-21010:21000-21010"
     networks:
       - inception_network
 

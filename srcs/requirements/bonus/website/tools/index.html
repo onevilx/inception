@@ -109,75 +109,6 @@
     .project-card a { text-decoration:none; color:inherit; font-weight:bold; }
     .project-card a:hover { text-shadow:0 0 10px #00e0ff; }
 
-    /* --- Achievements Carousel --- */
-    /* --- Certificate Detailed Card --- */
-    .cert-card {
-      display: flex;
-      gap: 20px;
-      background: #1f1f2e;
-      padding: 20px;
-      border-radius: 14px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
-      transition: transform 0.3s, box-shadow 0.3s;
-      align-items: center;
-    }
-
-    body.light .cert-card {
-      background: #e0e0e0;
-    }
-
-    .cert-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 0 25px #00e0ff;
-    }
-
-    .cert-card img {
-      width: 180px;
-      border-radius: 10px;
-      object-fit: cover;
-    }
-
-    .cert-content h3 {
-      margin-bottom: 10px;
-      color: #00e0ff;
-    }
-
-    .cert-content p {
-      font-size: 0.95em;
-      line-height: 1.6;
-      margin-bottom: 12px;
-      color: #ccc;
-    }
-
-    body.light .cert-content p {
-      color: #111;
-    }
-
-    .cert-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .cert-tags span {
-      background: rgba(0,224,255,0.15);
-      color: #00e0ff;
-      padding: 4px 10px;
-      border-radius: 6px;
-      font-size: 0.8em;
-    }
-
-    .cert-link {
-      display: inline-block;
-      margin-top: 10px;
-      text-decoration: none;
-      font-weight: bold;
-      color: #00e0ff;
-    }
-
-    .cert-link:hover {
-      text-shadow: 0 0 8px #00e0ff;
-    }
   </style>
 </head>
 <body class="dark">
@@ -238,37 +169,6 @@
       <div class="project-card"><a href="https://github.com/onevilx/ft_irc" target="_blank">FT_IRC</a><p>Ongoing IRC project</p></div>
     </div>
   </section>
-
-  <section>
-  <h2>Certifications</h2>
-  <div class="cert-card">
-    <img src="thm.png" alt="TryHackMe Pre Security Certificate">
-
-    <div class="cert-content">
-      <h3>TryHackMe — Pre Security</h3>
-
-      <p>
-        Hands-on introduction to cybersecurity fundamentals including
-        Linux basics, networking concepts, security principles, and
-        real-world attack awareness.
-      </p>
-
-      <div class="cert-tags">
-        <span>Cybersecurity</span>
-        <span>Linux</span>
-        <span>Networking</span>
-        <span>Security Analysis</span>
-      </div>
-
-      <a
-        class="cert-link"
-        href="https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-2D5RWHUIOM.pdf"
-        target="_blank">
-        View Certificate →
-      </a>
-    </div>
-  </div>
-</section>
 
   <script>
     // --- Dark/Light toggle ---

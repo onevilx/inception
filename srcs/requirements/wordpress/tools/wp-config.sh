@@ -34,6 +34,13 @@ if [ ! -f "$WP_PATH/wp-config.php" ]; then
         --role=author \
         --path="$WP_PATH" \
         --allow-root
+    
+    wp config set WP_REDIS_HOST redis --allow-root
+    wp config set WP_REDIS_DATABASE 0 --raw --allow-root
+    wp config set WP_REDIS_TIMEOUT 1 --raw --allow-root
+    wp config set WP_REDIS_READ_TIMEOUT 1 --raw --allow-root
+    wp plugin install redis-cache --activate --allow-root
+    wp redis enable --allow-root
 fi
 
 exec php-fpm8.2 -F
