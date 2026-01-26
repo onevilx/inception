@@ -39,11 +39,11 @@ services:
 
   website:
     build: ./requirements/bonus/website/
-    image: static-website:inception
-    container_name: static-website
+    image: website:inception
+    container_name: website
     restart: on-failure
     ports:
-      - "6666:8090"
+      - "8084:8080"
     networks:
       - inception_network
   
@@ -53,9 +53,23 @@ services:
     container_name: adminer
     restart: on-failure
     ports:
-      - "6699:5050"
+      - "6699:8081"
     depends_on:
       - mariadb
+    networks:
+      - inception_network
+
+  portainer:
+    build: ./requirements/bonus/portainer
+    image: portainer:inception
+    container_name: portainer
+    restart: on-failure
+    env_file: .env
+    ports:
+      - "1122:9443"
+    volumes:
+      - portainer_data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - inception_network
 
@@ -71,6 +85,12 @@ volumes:
       type: none
       o: bind
       device: /home/${USER}/data/wordpress
+
+  portainer_data:
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/${USER}/data/portainer
 
 networks:
   inception_network:

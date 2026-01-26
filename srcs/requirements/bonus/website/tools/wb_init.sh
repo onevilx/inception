@@ -3,7 +3,7 @@ set -e
 
 cat << EOF > /etc/nginx/conf.d/default.conf
 server {
-    listen 8090;
+    listen 8080;
     root /var/www/html/tools;
     index index.html;
 }

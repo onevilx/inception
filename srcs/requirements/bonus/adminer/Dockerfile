@@ -13,6 +13,6 @@ RUN wget https://www.adminer.org/latest.php -O adminer.php
 COPY tools/adminer_init.sh /adminer_init.sh
 RUN chmod +x /adminer_init.sh
 
-EXPOSE 5050
+EXPOSE 8081
 
 CMD ["/adminer_init.sh"]
