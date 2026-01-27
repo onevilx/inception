@@ -3,123 +3,76 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Youssef Aboukir</title>
+  <title>About Me - Youssef Aboukir</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
-
-    /* --- Reset & Base --- */
-    * { margin:0; padding:0; box-sizing:border-box; }
     body {
-      font-family: 'Roboto Mono', monospace;
-      transition: background 0.5s, color 0.5s;
-      overflow-x: hidden;
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: #fff;
+      margin: 0;
+      padding: 0;
     }
 
-    /* --- Background animation --- */
-    #particles {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: -1;
-      background: #0f111a;
-    }
-
-    /* --- Themes --- */
-    body.dark { background: #0f111a; color: #fff; }
-    body.light { background: #f4f4f4; color: #111; }
-
-    /* --- Header --- */
     header {
       text-align: center;
-      padding: 80px 20px 40px;
+      padding: 50px 20px;
     }
 
     #profile-pic {
-      width: 150px; height: 150px; border-radius: 50%;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
       background: url('moi.png') center/cover no-repeat;
-      display: block;
       margin: 0 auto 20px;
-      transition: transform 0.5s;
+      border: 3px solid #ffb700;
     }
-    #profile-pic:hover { transform: rotate(360deg); }
 
-    h1 { font-size: 3em; margin-bottom: 10px; color:#00e0ff; }
-    h2 { color: #00e0ff; margin-bottom: 20px; }
+    h1 {
+      font-size: 2.5em;
+      color: #00e0ff;
+      margin-bottom: 10px;
+    }
+      
+    h2 {
+      font-size: 2em;
+      text-align: center;
+      color: #555;
+      margin-top: 40px;
+    }
 
-    #role {
-      font-size: 1.2em;
-      color: #aaa;
-      height: 30px;
-      margin-bottom: 15px;
+    .about-text {
+      max-width: 700px;
+      margin: 20px auto;
+      font-size: 1.1em;
+      line-height: 1.6;
+      background: #111;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,224,255,0.5);
+    }
+
+    .contacts {
+      text-align: center;
+      margin-top: 20px;
     }
 
     .contacts a {
       margin: 0 10px;
       text-decoration: none;
+      color: #00e0ff;
       font-weight: bold;
-      color: inherit;
-      transition: 0.3s;
-    }
-    .contacts a:hover { text-shadow: 0 0 5px #00e0ff; }
-
-    .about-text {
-    font-size: 1.05em;
-    line-height: 1.7;
-    color: #ddd;
-    background: rgba(31, 31, 46, 0.6);
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.4);
     }
 
-    body.light .about-text {
-    background: #e8e8e8;
-    color: #111;
+    .contacts a:hover {
+      text-decoration: underline;
     }
-
-    /* --- Toggle --- */
-    #theme-toggle {
-      position: fixed; top:20px; right:20px;
-      padding:10px 15px; border:none; border-radius:6px;
-      cursor:pointer; font-weight:bold; transition:0.3s;
-      z-index:100;
-    }
-
-    /* --- Sections & Fade-in --- */
-    section { max-width:900px; margin:60px auto; padding:0 20px; opacity:0; transform:translateY(20px); transition: all 0.6s ease; }
-    section.visible { opacity:1; transform:translateY(0); }
-
-    /* --- Skills Tags --- */
-    .skills { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:30px; }
-    .skill-tag {
-      background: #1f1f2e; color:#fff; padding:8px 15px; border-radius:8px;
-      transition:0.3s;
-    }
-    body.light .skill-tag { background:#ddd; color:#111; }
-    .skill-tag:hover { transform: scale(1.1); }
-
-    /* --- Project Cards --- */
-    .projects { display:grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
-    .project-card {
-      background:#1f1f2e; padding:20px; border-radius:12px; transition:0.3s;
-      box-shadow:0 0 10px rgba(0,0,0,0.5);
-    }
-    body.light .project-card { background:#e0e0e0; }
-    .project-card:hover { transform: translateY(-5px); box-shadow:0 0 20px #00e0ff; }
-    .project-card a { text-decoration:none; color:inherit; font-weight:bold; }
-    .project-card a:hover { text-shadow:0 0 10px #00e0ff; }
-
   </style>
 </head>
-<body class="dark">
-
-  <canvas id="particles"></canvas>
-  <button id="theme-toggle">🌞 </button>
+<body>
 
   <header>
     <div id="profile-pic"></div>
     <h1>Youssef Aboukir</h1>
-    <div id="role"></div>
     <div class="contacts">
       <a href="https://www.linkedin.com/in/youssef-aboukir-850725269/" target="_blank">LinkedIn</a>
       <a href="https://github.com/onevilx" target="_blank">GitHub</a>
@@ -127,130 +80,19 @@
     </div>
   </header>
 
-  <section>
   <h2>About Me</h2>
-  <p class="about-text">
-    <strong>Hello 👋</strong> I am <strong>Youssef Aboukir</strong>, a <strong>Software Developer</strong> with a strong interest in systems and security,
-    and a <strong>CTF player</strong> known as <strong>onevilx</strong>.
-    <br><br>
-    I enjoy building low-level software in <strong>C/C++</strong>, understanding how
-    systems work internally, and breaking applications to learn how to secure them.
-    My main areas of interest include <strong>Cryptography</strong>,
-    <strong>Web Security</strong>, <strong>OSINT</strong>, and <strong>Networking</strong>.
-  </p>
-
-</section>
-
-  <section>
-    <h2>Skills</h2>
-    <div class="skills">
-      <span class="skill-tag">C</span>
-      <span class="skill-tag">C++</span>
-      <span class="skill-tag">Bash</span>
-      <span class="skill-tag">JavaScript</span>
-      <span class="skill-tag">Wireshark</span>
-      <span class="skill-tag">Nmap</span>
-      <span class="skill-tag">GDB</span>
-      <span class="skill-tag">Cryptography</span>
-      <span class="skill-tag">Web Security</span>
-      <span class="skill-tag">OSINT</span>
-      <span class="skill-tag">Networking</span>
-      <span class="skill-tag">Security Analysis</span>
-      <span class="skill-tag">OWASP</span>
-    </div>
-  </section>
-
-  <section>
-    <h2>Projects</h2>
-    <div class="projects">
-      <div class="project-card"><a href="https://github.com/onevilx/cub3d" target="_blank">Cub3D</a><p>3D raycasting game project</p></div>
-      <div class="project-card"><a href="https://github.com/onevilx/minishell" target="_blank">Minishell</a><p>Custom shell project</p></div>
-      <div class="project-card"><a href="https://github.com/onevilx/inception" target="_blank">Inception</a><p>Ongoing project</p></div>
-      <div class="project-card"><a href="https://github.com/onevilx/ft_irc" target="_blank">FT_IRC</a><p>Ongoing IRC project</p></div>
-    </div>
-  </section>
-
-  <script>
-    // --- Dark/Light toggle ---
-    const toggleBtn = document.getElementById('theme-toggle');
-    const body = document.body;
-    toggleBtn.addEventListener('click', () => {
-      if (body.classList.contains('dark')) {
-        body.classList.replace('dark','light');
-        toggleBtn.textContent='🌙';
-      } else {
-        body.classList.replace('light','dark');
-        toggleBtn.textContent='🌞';
-      }
-    });
-
-    // --- Typing animation ---
-    const roleEl = document.getElementById('role');
-    const roles = ["Software Developer", "CTF Player"];
-    let i=0, j=0, deleting=false;
-    function typeRole(){
-      const current = roles[i];
-      if(!deleting){
-        roleEl.textContent = current.slice(0,j+1);
-        j++;
-        if(j===current.length){ deleting=true; setTimeout(typeRole,1000); return;}
-      }else{
-        roleEl.textContent = current.slice(0,j-1);
-        j--;
-        if(j===0){ deleting=false; i=(i+1)%roles.length; }
-      }
-      setTimeout(typeRole, deleting?50:100);
-    }
-    typeRole();
-
-    // --- Fade-in on scroll ---
-    const sections = document.querySelectorAll('section');
-    window.addEventListener('scroll', () => {
-      sections.forEach(sec => {
-        if(sec.getBoundingClientRect().top < window.innerHeight - 100){
-          sec.classList.add('visible');
-        }
-      });
-    });
-
-    // --- Particle background ---
-    const canvas=document.getElementById('particles');
-    const ctx=canvas.getContext('2d');
-    let w=canvas.width=window.innerWidth;
-    let h=canvas.height=window.innerHeight;
-    let particles=[];
-    for(let i=0;i<120;i++){
-      particles.push({x:Math.random()*w, y:Math.random()*h, r:Math.random()*2+1, dx:(Math.random()-0.5)*0.5, dy:(Math.random()-0.5)*0.5});
-    }
-    function animate(){
-      ctx.clearRect(0,0,w,h);
-      particles.forEach(p=>{
-        p.x+=p.dx; p.y+=p.dy;
-        if(p.x<0||p.x>w) p.dx*=-1;
-        if(p.y<0||p.y>h) p.dy*=-1;
-        ctx.fillStyle='rgba(0,224,255,0.7)';
-        ctx.beginPath();
-        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-        ctx.fill();
-
-        particles.forEach(p2=>{
-          let dx=p.x-p2.x, dy=p.y-p2.y;
-          let dist=Math.sqrt(dx*dx+dy*dy);
-          if(dist<100){
-            ctx.strokeStyle='rgba(0,224,255,'+(1-dist/100)+')';
-            ctx.lineWidth=0.5;
-            ctx.beginPath();
-            ctx.moveTo(p.x,p.y);
-            ctx.lineTo(p2.x,p2.y);
-            ctx.stroke();
-          }
-        });
-      });
-      requestAnimationFrame(animate);
-    }
-    animate();
-    window.addEventListener('resize',()=>{w=canvas.width=window.innerWidth; h=canvas.height=window.innerHeight;});
-  </script>
+  <div class="about-text">
+    <p>
+      <strong>Hello 👋</strong> I am <strong>Youssef Aboukir</strong>, a <strong>Software Developer</strong> with a strong interest in systems and security,
+      and a <strong>CTF player</strong> known as <strong>onevilx</strong>.
+    </p>
+    <p>
+      I enjoy building low-level software in <strong>C/C++</strong>, understanding how
+      systems work internally, and breaking applications to learn how to secure them.
+      My main areas of interest include <strong>Cryptography</strong>,
+      <strong>Web Security</strong>, <strong>OSINT</strong>, and <strong>Networking</strong>.
+    </p>
+  </div>
 
 </body>
 </html>
