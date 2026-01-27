@@ -1,6 +1,4 @@
-USER := $(shell whoami)
-
-DATA_DIR := /home/$(USER)/data
+DATA_DIR := /home/yaboukir/data
 WP_DIR   := $(DATA_DIR)/wordpress
 DB_DIR   := $(DATA_DIR)/mariadb
 PT_DIR	 := $(DATA_DIR)/portainer

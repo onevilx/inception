@@ -101,19 +101,19 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/${USER}/data/mariadb
+      device: /home/yaboukir/data/mariadb
 
   wordpress_files:
     driver_opts:
       type: none
       o: bind
-      device: /home/${USER}/data/wordpress
+      device: /home/yaboukir/data/wordpress
 
   portainer_data:
     driver_opts:
       type: none
       o: bind
-      device: /home/${USER}/data/portainer
+      device: /home/yaboukir/data/portainer
 
 networks:
   inception_network:

@@ -3,9 +3,8 @@ set -e
 
 WP_PATH="/var/www/html"
 
-# Wait for MariaDB
 until mysqladmin ping -h "$WP_DB_HOST" --silent; do
-    sleep 2
+    sleep 5
 done
 
 if [ ! -f "$WP_PATH/wp-config.php" ]; then
@@ -20,7 +19,7 @@ if [ ! -f "$WP_PATH/wp-config.php" ]; then
         --allow-root
 
     wp core install \
-        --url="https://localhost:6969" \
+        --url="https://yaboukir.42.fr:6969" \
         --title="Inception" \
         --admin_user="$WP_ADMIN_USER" \
         --admin_password="$WP_ADMIN_PASSWORD" \
