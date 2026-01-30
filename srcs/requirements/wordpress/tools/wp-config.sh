@@ -19,7 +19,7 @@ if [ ! -f "$WP_PATH/wp-config.php" ]; then
         --allow-root
 
     wp core install \
-        --url="https://yaboukir.42.fr:6969" \
+        --url="https://localhost:6969" \
         --title="Inception" \
         --admin_user="$WP_ADMIN_USER" \
         --admin_password="$WP_ADMIN_PASSWORD" \
