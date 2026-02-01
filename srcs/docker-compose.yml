@@ -30,7 +30,7 @@ services:
     container_name: nginx
     restart: on-failure
     ports:
-      - "6969:443"
+      - "443:443"
     volumes:
       - wordpress_files:/var/www/html:ro
     depends_on:
@@ -44,7 +44,7 @@ services:
     container_name: website
     restart: on-failure
     ports:
-      - "8084:8080"
+      - "8080:8080"
     networks:
       - inception_network
   
@@ -54,7 +54,7 @@ services:
     container_name: adminer
     restart: on-failure
     ports:
-      - "6699:8081"
+      - "8081:8081"
     depends_on:
       - mariadb
     networks:
@@ -65,12 +65,11 @@ services:
     image: portainer:inception
     container_name: portainer
     restart: on-failure
-    env_file: .env
     ports:
-      - "1122:9443"
+      - "9443:9443"
     volumes:
-      - portainer_data:/data
       - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
     networks:
       - inception_network
 
@@ -91,7 +90,7 @@ services:
     volumes:
       - wordpress_files:/var/www/html
     ports:
-      - "2121:21"
+      - "21:21"
       - "21000-21010:21000-21010"
     networks:
       - inception_network

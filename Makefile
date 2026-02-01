@@ -18,8 +18,7 @@ down:
 
 clean:
 	$(COMPOSE) down
-#	rm -rf $(DATA_DIR)
-	zsh -ic 'dokir'
+	sudo rm -rf $(DATA_DIR)
 
 re: clean
 	make up
